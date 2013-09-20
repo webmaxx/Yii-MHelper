@@ -48,7 +48,7 @@ MString::toLower('TeSt StRiNg');                         // test string
 Use chaining
 ------------
 
-```
+```php
 MHelper::get()->string('TeSt StRiNg', true)->toUpper()->lcFirst()->value;                 // tEST STRING
 MHelper::get()->string(null, true)->toUpper('TeSt StRiNg')->lcFirst()->value;             // tEST STRING
 MHelper::get()->string('TeSt StRiNg', true)->toUpper()->lcFirst()->value;                 // tEST STRING
