@@ -25,7 +25,7 @@ class MArray extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/array_helper.php
 	 */
-	public function element($item=null, $array=array(), $default=false, $returnData=false)
+	public function _element($item=null, $array=array(), $default=false, $returnData=false)
 	{
 		$item = self::_getValue($item);
 		if (!isset($array[$item]) || $array[$item] == "")
@@ -44,7 +44,7 @@ class MArray extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/array_helper.php
 	 */
-	public function randomElement($array=null, $returnData=false)
+	public function _randomElement($array=null, $returnData=false)
 	{
 		$array = self::_getValue($array);
 		if (!is_array($array))
@@ -66,7 +66,7 @@ class MArray extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/array_helper.php
 	 */
-	public function elements($items=null, $array=array(), $default=false, $returnData=false)
+	public function _elements($items=null, $array=array(), $default=false, $returnData=false)
 	{
 		$items = self::_getValue($items);
 		$return = array();

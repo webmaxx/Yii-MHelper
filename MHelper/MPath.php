@@ -21,7 +21,7 @@ class MPath extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function isFile($file=null, $returnData=false)
+	public function _isFile($file=null, $returnData=false)
 	{
 		$file = self::_getValue($file);
 		return self::_return($file ? is_file($file) : false, $returnData);
@@ -37,7 +37,7 @@ class MPath extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function isReadable($file=null, $returnData=false)
+	public function _isReadable($file=null, $returnData=false)
 	{
 		$file = self::_getValue($file);
 		return self::_return($file ? is_readable($file) : false, $returnData);
@@ -54,7 +54,7 @@ class MPath extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function createDir($dir=null, $chmod=0777, $returnData=false)
+	public function _createDir($dir=null, $chmod=0777, $returnData=false)
 	{
 		$dir = self::_getValue($dir);
 		@mkdir($dir, $chmod, true);
@@ -73,7 +73,7 @@ class MPath extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function mkdir($dir=null, $chmod=0777, $returnData=false)
+	public function _mkdir($dir=null, $chmod=0777, $returnData=false)
 	{
 		$dir = self::_getValue($dir);
 		return self::_return(self::createDir($dir, $chmod, true), $returnData);
@@ -90,7 +90,7 @@ class MPath extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/file_helper.php
 	 */
-	public function read($file=null, $returnData=false)
+	public function _read($file=null, $returnData=false)
 	{
 		$file = self::_getValue($file);
 		if (!file_exists($file))
@@ -127,7 +127,7 @@ class MPath extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/file_helper.php
 	 */
-	public function write($path=null, $data=null, $mode=FOPEN_WRITE_CREATE_DESTRUCTIVE, $returnData=false)
+	public function _write($path=null, $data=null, $mode=FOPEN_WRITE_CREATE_DESTRUCTIVE, $returnData=false)
 	{
 		$path = self::_getValue($path);
 		if (!$fp = @fopen($path, $mode))
@@ -154,7 +154,7 @@ class MPath extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/file_helper.php
 	 */
-	public function filenames($source_dir=null, $include_path=false, $_recursion=false, $returnData=false)
+	public function _filenames($source_dir=null, $include_path=false, $_recursion=false, $returnData=false)
 	{
 		$source_dir = self::_getValue($source_dir);
 		static $_filedata = array();
@@ -193,7 +193,7 @@ class MPath extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/file_helper.php
 	 */
-	public function filesInfo($source_dir=null, $top_level_only=true, $_recursion=false, $returnData=false)
+	public function _filesInfo($source_dir=null, $top_level_only=true, $_recursion=false, $returnData=false)
 	{
 		$source_dir = self::_getValue($source_dir);
 		static $_filedata = array();
@@ -240,7 +240,7 @@ class MPath extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/file_helper.php
 	 */
-	public function fileInfo($file=null, $returned_values=array('name','server_path','size','date'), $returnData=false)
+	public function _fileInfo($file=null, $returned_values=array('name','server_path','size','date'), $returnData=false)
 	{
 		$file = self::_getValue($file);
 		if (!file_exists($file))
@@ -293,7 +293,7 @@ class MPath extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function pathInfo($file=null, $field=false, $returnData=false)
+	public function _pathInfo($file=null, $field=false, $returnData=false)
 	{
 		$file = self::_getValue($file);
 		$pathInfo = $file ? pathinfo($file) : false;
@@ -311,7 +311,7 @@ class MPath extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function size($file=null, $format=false, $returnData=false)
+	public function _size($file=null, $format=false, $returnData=false)
 	{
 		$file = self::_getValue($file);
 		if (self::isFile($file))
@@ -334,7 +334,7 @@ class MPath extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function sizeFormat($bytes=null, $format='', $returnData=false)
+	public function _sizeFormat($bytes=null, $format='', $returnData=false)
 	{
 		$bytes = self::_getValue($bytes);
 		$units = array('B', 'KB', 'MB', 'GB', 'TB', 'PB');
@@ -359,7 +359,7 @@ class MPath extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function send($file=null, $fakename=false, $returnData=false)
+	public function _send($file=null, $fakename=false, $returnData=false)
 	{
 		$file = self::_getValue($file);
 		if (!self::isFile($file) || !self::isReadable($file))
@@ -404,7 +404,7 @@ class MPath extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function download($file=null, $fakename=false, $returnData=false)
+	public function _download($file=null, $fakename=false, $returnData=false)
 	{
 		$file = self::_getValue($file);
 		return self::_return(self::send($file, $fakename), $returnData);
@@ -420,7 +420,7 @@ class MPath extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function getMimeType($file=null, $returnData=false)
+	public function _getMimeType($file=null, $returnData=false)
 	{
 		$file = self::_getValue($file);
 		if (self::_functionExists('finfo_open'))
@@ -443,7 +443,7 @@ class MPath extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function getMimeTypeByExtension($file=null, $returnData=false)
+	public function _getMimeTypeByExtension($file=null, $returnData=false)
 	{
 		$file = self::_getValue($file);
 		if (!isset(self::$_storage['extensions']))
@@ -470,7 +470,7 @@ class MPath extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/directory_helper.php
 	 */
-	public function map($source_dir=null, $directory_depth=0, $hidden=false, $returnData=false)
+	public function _map($source_dir=null, $directory_depth=0, $hidden=false, $returnData=false)
 	{
 		$source_dir = self::_getValue($source_dir);
 		if ($fp = @opendir($source_dir))
@@ -510,7 +510,7 @@ class MPath extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/file_helper.php
 	 */
-	public function cleardir($path=null, $del_dir=true, $level=0, $returnData=false)
+	public function _cleardir($path=null, $del_dir=true, $level=0, $returnData=false)
 	{
 		$path = self::_getValue($path);
 		$path = rtrim($path, DIRECTORY_SEPARATOR);
@@ -550,7 +550,7 @@ class MPath extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function rmdir($path=null, $returnData=false)
+	public function _rmdir($path=null, $returnData=false)
 	{
 		$path = self::_getValue($path);
 		if (self::clear($path))

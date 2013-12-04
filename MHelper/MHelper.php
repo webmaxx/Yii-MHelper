@@ -165,6 +165,13 @@ abstract class MHelperBase
 		}
 	}
 
+	public function __call($name, $arguments)
+	{
+		$helper = substr(get_called_class(), 1);
+		$name = "_{$name}";
+		return eval('return MHelper::get($helper)->$name(implode(",",$arguments));');
+	}
+
 	public static function __callStatic($name, $arguments)
 	{
 		$helper = substr(get_called_class(), 1);
@@ -174,6 +181,11 @@ abstract class MHelperBase
 			$Helper = MHelper::get($helper, null, $chain);
 			$Helper->setChain($chain);
 			return $Helper;
+		}
+		else
+		{
+			$name = "_{$name}";
+			return eval('return MHelper::get($helper)->$name(implode(",",$arguments));');
 		}
 	}
 

@@ -22,7 +22,7 @@ class MString extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function toUpper($string=null, $charset='UTF-8', $returnData=false)
+	public function _toUpper($string=null, $charset='UTF-8', $returnData=false)
 	{
 		if (self::_functionExists('mb_strtoupper'))
 			return self::_return(mb_strtoupper(self::_getValue($string), $charset), $returnData);
@@ -41,7 +41,7 @@ class MString extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function toLower($string=null, $charset='UTF-8', $returnData=false)
+	public function _toLower($string=null, $charset='UTF-8', $returnData=false)
 	{
 		if (self::_functionExists('mb_strtolower'))
 			return self::_return(mb_strtolower(self::_getValue($string), $charset), $returnData);
@@ -60,7 +60,7 @@ class MString extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function ucFirst($string=null, $charset='UTF-8', $returnData=false)
+	public function _ucFirst($string=null, $charset='UTF-8', $returnData=false)
 	{
 		$string = self::_getValue($string);
 		$letter = self::substr($string, 0, 1, $charset, true);
@@ -79,7 +79,7 @@ class MString extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function lcFirst($string=null, $charset='UTF-8', $returnData=false)
+	public function _lcFirst($string=null, $charset='UTF-8', $returnData=false)
 	{
 		$string = self::_getValue($string);
 		$letter = self::substr($string, 0, 1, $charset, true);
@@ -98,7 +98,7 @@ class MString extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function ucWords($string=null, $charset='UTF-8', $returnData=false)
+	public function _ucWords($string=null, $charset='UTF-8', $returnData=false)
 	{
 		if (self::_functionExists('mb_convert_case'))
 			return self::_return(mb_convert_case(self::_getValue($string), MB_CASE_TITLE, $charset), $returnData);
@@ -118,7 +118,7 @@ class MString extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function convertCase($string=null, $mode=MB_CASE_UPPER, $charset='UTF-8', $returnData=false)
+	public function _convertCase($string=null, $mode=MB_CASE_UPPER, $charset='UTF-8', $returnData=false)
 	{
 		if (self::_functionExists('mb_convert_case'))
 			return self::_return(mb_convert_case(self::_getValue($string), $mode, $charset), $returnData);
@@ -139,7 +139,7 @@ class MString extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function substr($string=null, $start=null, $length=null, $charset='UTF-8', $returnData=false)
+	public function _substr($string=null, $start=null, $length=null, $charset='UTF-8', $returnData=false)
 	{
 		if (self::_functionExists('mb_substr'))
 			return self::_return(mb_substr(self::_getValue($string), $start, $length, $charset), $returnData);
@@ -160,7 +160,7 @@ class MString extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function strrchr($haystack=null, $needle=null, $part=false, $charset='UTF-8', $returnData=false)
+	public function _strrchr($haystack=null, $needle=null, $part=false, $charset='UTF-8', $returnData=false)
 	{
 		if (self::_functionExists('mb_strrchr'))
 			return self::_return(mb_strrchr(self::_getValue($haystack), $needle, $part, $charset), $returnData);
@@ -179,7 +179,7 @@ class MString extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function len($string=null, $charset='UTF-8', $returnData=false)
+	public function _len($string=null, $charset='UTF-8', $returnData=false)
 	{
 		if (self::_functionExists('mb_strlen'))
 			return self::_return(mb_strlen(self::_getValue($string), $charset), $returnData);
@@ -200,7 +200,7 @@ class MString extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function stripos($haystack=null, $needle=null, $offset=null, $charset='UTF-8', $returnData=false)
+	public function _stripos($haystack=null, $needle=null, $offset=null, $charset='UTF-8', $returnData=false)
 	{
 		if (self::_functionExists('mb_stripos'))
 			return self::_return(mb_stripos(self::_getValue($haystack), $needle, $offset, $charset), $returnData);
@@ -219,7 +219,7 @@ class MString extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/string_helper.php
 	 */
-	public function trimSlashes($string=null, $returnData=false)
+	public function _trimSlashes($string=null, $returnData=false)
 	{
 		return self::_return(trim(self::_getValue($string), '/'), $returnData);
 	}
@@ -235,7 +235,7 @@ class MString extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/string_helper.php
 	 */
-	public function stripSlashes($string=null, $returnData=false)
+	public function _stripSlashes($string=null, $returnData=false)
 	{
 		$string = self::_getValue($string);
 		if (is_array($string))
@@ -263,7 +263,7 @@ class MString extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/string_helper.php
 	 */
-	public function stripQuotes($string=null, $returnData=false)
+	public function _stripQuotes($string=null, $returnData=false)
 	{
 		return self::_return(str_replace(array('"', "'"), '', self::_getValue($string)), $returnData);
 	}
@@ -279,7 +279,7 @@ class MString extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/string_helper.php
 	 */
-	public function quotesToEntities($string=null, $returnData=false)
+	public function _quotesToEntities($string=null, $returnData=false)
 	{
 		return self::_return(str_replace(array("'","\"","'",'"'), array("&#39;","&quot;","&#39;","&quot;"), self::_getValue($string)), $returnData);
 	}
@@ -296,7 +296,7 @@ class MString extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/string_helper.php
 	 */
-	public function reduceDoubleSlashes($string=null, $returnData=false)
+	public function _reduceDoubleSlashes($string=null, $returnData=false)
 	{
 		return self::_return(preg_replace("#(^|[^:])//+#", "\\1/", self::_getValue($string)), $returnData);
 	}
@@ -318,7 +318,7 @@ class MString extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/string_helper.php
 	 */
-	public function reduceMultiples($string=null, $character=',', $trim=false, $returnData=false)
+	public function _reduceMultiples($string=null, $character=',', $trim=false, $returnData=false)
 	{
 		$string = self::_getValue($string);
 		$string = preg_replace('#'.preg_quote($character, '#').'{2,}#', $character, $string);
@@ -342,7 +342,7 @@ class MString extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/string_helper.php
 	 */
-	public function incrementString($string=null, $separator='_', $first=1, $returnData=false)
+	public function _incrementString($string=null, $separator='_', $first=1, $returnData=false)
 	{
 		$string = self::_getValue($string);
 		preg_match('/(.+)'.$separator.'([0-9]+)$/', $string, $match);
@@ -360,7 +360,7 @@ class MString extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/string_helper.php
 	 */
-	public function alternator($returnData=false)
+	public function _alternator($returnData=false)
 	{
 		static $i;
 
@@ -386,7 +386,7 @@ class MString extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/string_helper.php
 	 */
-	public function repeater($string=null, $num=1, $returnData=false)
+	public function _repeater($string=null, $num=1, $returnData=false)
 	{
 		return self::_return((($num > 0) ? str_repeat(self::_getValue($string), $num) : ''), $returnData);
 	}
@@ -404,7 +404,7 @@ class MString extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function wordwrap($string=null, $width=80, $break="\r\n", $cut=false, $returnData=false)
+	public function _wordwrap($string=null, $width=80, $break="\r\n", $cut=false, $returnData=false)
 	{
 		return self::_return(preg_replace('#([\S]{'.$width.'}'. ($cut ? '' : '\s') .')#u', '$1'. $break , self::_getValue($string)), $returnData);
 	}
@@ -445,7 +445,7 @@ class MString extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function truncate($string=null, $length=80, $etc='...', $break_words=false, $middle=false, $exact_length=true, $charset='UTF-8', $returnData=false)
+	public function _truncate($string=null, $length=80, $etc='...', $break_words=false, $middle=false, $exact_length=true, $charset='UTF-8', $returnData=false)
 	{
 		$string = self::_getValue($string);
 		if ($length == 0) return '';
@@ -510,7 +510,7 @@ class MString extends MHelperBase
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 * @see CodeIgniter_2.1.0/system/helpers/string_helper.php
 	 */
-	public function randomString($len=5, $type='alnum', $returnData=false)
+	public function _randomString($len=5, $type='alnum', $returnData=false)
 	{
 		switch($type)
 		{
@@ -563,7 +563,7 @@ class MString extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function toTranslit($string=null, $returnData=false)
+	public function _toTranslit($string=null, $returnData=false)
 	{
 		$tr = array(
 			'А'=>'A',  'Б'=>'B',  'В'=>'V',  'Г'=>'G', 'Д'=>'D',
@@ -606,7 +606,7 @@ class MString extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function fromTranslit($string=null, $returnData=false)
+	public function _fromTranslit($string=null, $returnData=false)
 	{
 		$tr = array(
 			'A'=>'А', 'B'=>'Б',  'C'=>'К', 'D'=>'Д', 'E'=>'Е',
@@ -639,10 +639,10 @@ class MString extends MHelperBase
 	 * @see @this->_diff()
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function diff($old=null, $new=null, $returnData=false)
+	public function _diff($old=null, $new=null, $returnData=false)
 	{
 		$old = self::_getValue($old);
-		$diff = self::_diff(explode(' ', $old), explode(' ', $new));
+		$diff = self::_p_diff(explode(' ', $old), explode(' ', $new));
 
 		$ret = '';
 		foreach($diff as $k)
@@ -666,7 +666,7 @@ class MString extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	private function _diff($old=null, $new=null, $returnData=false)
+	private function _p_diff($old=null, $new=null, $returnData=false)
 	{
 		$old = self::_getValue($old);
 		$maxlen = 0;

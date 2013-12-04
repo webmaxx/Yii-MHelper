@@ -22,7 +22,7 @@ class MDate extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function timeAgo($datetime=null, $options=array(), $returnData=false)
+	public function _timeAgo($datetime=null, $options=array(), $returnData=false)
 	{
 		$datetime = self::_getValue($datetime);
 		$now = time();
@@ -193,7 +193,7 @@ class MDate extends MHelperBase
 	 * @version 2.0 20.09.2013
 	 * @author webmaxx <webmaxx@webmaxx.name>
 	 */
-	public function daysInMonth($month=null, $year=null, $returnData=false)
+	public function _daysInMonth($month=null, $year=null, $returnData=false)
 	{
 		$month = self::_getValue($month);
 		if (!is_numeric($month) || $month<1 || $month>12)
